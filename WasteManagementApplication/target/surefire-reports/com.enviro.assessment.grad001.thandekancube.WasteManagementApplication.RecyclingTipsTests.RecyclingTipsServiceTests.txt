@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.enviro.assessment.grad001.thandekancube.WasteManagementApplication.RecyclingTipsTests.RecyclingTipsServiceTests
--------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.435 s -- in com.enviro.assessment.grad001.thandekancube.WasteManagementApplication.RecyclingTipsTests.RecyclingTipsServiceTests
