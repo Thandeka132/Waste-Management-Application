@@ -4,17 +4,17 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-@Entity
-@Table(name = "guidelines")
+@Entity // Marks the class as a JPA entity
+@Table(name = "guidelines") // Maps the class to the "guidelines" table in the database
 public class DisposalGuideline {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id // Specifies the primary key
+    @GeneratedValue(strategy = GenerationType.AUTO) // Specifies how the primary key should be generated
     private long Id;
 
-    @Column(name = "guideline")
-    @NotNull(message = "Guideline cannot be null")
-    @Size(min = 1, max = 100, message = "Guideline must be between 1 and 100 characters")
+    @Column(name = "guideline") // Maps the field to the "guideline" column in the database
+    @NotNull(message = "Guideline cannot be null") // Adds validation constraint for not null
+    @Size(min = 1, max = 100, message = "Guideline must be between 1 and 100 characters") // Adds validation constraint for size
     private String guideline;
 
     @Column(name = "complexity")
@@ -22,6 +22,7 @@ public class DisposalGuideline {
     @Size(min = 1, max = 100, message = "Complexity must be between 1 and 100 characters")
     private String complexity;
 
+    // Default constructor
     public DisposalGuideline() {
 
     }
@@ -55,6 +56,7 @@ public class DisposalGuideline {
         this.complexity = complexity;
     }
 
+    // toString method for displaying object information
     public String toString() {
         return "Disposal Guideline [id=" + Id + " Guideline=" + guideline + ", complexity=" + complexity + ",]";
     }

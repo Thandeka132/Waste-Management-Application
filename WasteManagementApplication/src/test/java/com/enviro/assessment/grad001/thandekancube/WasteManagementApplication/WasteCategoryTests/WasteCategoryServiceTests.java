@@ -18,6 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 
+/**
+ * Unit tests for the WasteCategoryService class.
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = WasteManagementApplication.class)
 public class WasteCategoryServiceTests {
@@ -28,6 +31,9 @@ public class WasteCategoryServiceTests {
     @MockBean
     private WasteCategoryRepository wasteCategoryRepository;
 
+    /**
+     * Tests retrieving all waste categories.
+     */
     @Test
     public void testGetAllWasteCategories() throws Exception {
         WasteCategory wasteCategory = getWasteCategory();
@@ -38,6 +44,9 @@ public class WasteCategoryServiceTests {
         assertEquals(result.size(), 1);
     }
 
+    /**
+     * Tests retrieving a waste category by ID.
+     */
     @Test
     public void testGetWasteCategoryByID() throws Exception {
         WasteCategory wasteCategory = getWasteCategory();
@@ -47,6 +56,9 @@ public class WasteCategoryServiceTests {
         assertEquals(result.get().getId(), 1L);
     }
 
+    /**
+     * Tests retrieving a waste category by ID when not found.
+     */
     @Test
     public void testGetWasteCategoryByID_NotFound() throws Exception {
         given(wasteCategoryService.getWasteCategoryById(2L)).willReturn(Optional.empty());
@@ -54,6 +66,9 @@ public class WasteCategoryServiceTests {
         assertFalse(result.isPresent());
     }
 
+    /**
+     * Tests saving a waste category.
+     */
     @Test
     public void testSaveWasteCategory() throws Exception {
         WasteCategory wasteCategory = getWasteCategory();
@@ -66,6 +81,9 @@ public class WasteCategoryServiceTests {
 
     }
 
+    /**
+     * Tests saving a waste category with invalid data.
+     */
     @Test
     public void testSaveWasteCategory_InvalidData() throws Exception {
         WasteCategory invalidWasteCategory = new WasteCategory();
@@ -79,6 +97,9 @@ public class WasteCategoryServiceTests {
     }
 
 
+    /**
+     * Tests updating a waste category.
+     */
     @Test
     public void testUpdateWasteCategory() throws Exception {
         WasteCategory oldCategory = getWasteCategory();
@@ -94,6 +115,9 @@ public class WasteCategoryServiceTests {
         assertEquals(result.getDescription(), "Plastic waste");
     }
 
+    /**
+     * Tests updating a waste category that is not found.
+     */
     @Test
     public void testUpdateWasteCategory_NotFound() throws Exception {
         WasteCategory updatedCategory = getUpdatedWasteCategory();
@@ -104,6 +128,9 @@ public class WasteCategoryServiceTests {
         assertNull(result);
     }
 
+    /**
+     * Tests deleting a waste category.
+     */
     @Test
     public void testDeleteWasteCategory() throws Exception {
         WasteCategory wasteCategory = getWasteCategory();
@@ -112,6 +139,9 @@ public class WasteCategoryServiceTests {
         assertTrue(true);
     }
 
+    /**
+     * Tests deleting a waste category that is not found.
+     */
     @Test
     public void testDeleteWasteCategory_NotFound() throws Exception {
         doNothing().when(wasteCategoryService).deleteWasteCategory(2L);
@@ -120,6 +150,9 @@ public class WasteCategoryServiceTests {
         assertTrue(true);
     }
 
+    /**
+     * Utility method to create a sample WasteCategory object for testing purposes.
+     */
     private WasteCategory getWasteCategory() {
         WasteCategory wasteCategory = new WasteCategory();
         wasteCategory.setId(1L);
@@ -128,6 +161,9 @@ public class WasteCategoryServiceTests {
         return wasteCategory;
     }
 
+    /**
+     * Utility method to create an updated WasteCategory object for testing purposes.
+     */
     private WasteCategory getUpdatedWasteCategory() {
         WasteCategory wasteCategory = new WasteCategory();
         wasteCategory.setId(1L);
@@ -136,4 +172,3 @@ public class WasteCategoryServiceTests {
         return wasteCategory;
     }
 }
-

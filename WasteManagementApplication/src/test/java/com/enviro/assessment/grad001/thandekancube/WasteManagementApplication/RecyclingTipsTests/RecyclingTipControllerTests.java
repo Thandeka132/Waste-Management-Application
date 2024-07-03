@@ -21,13 +21,14 @@ import java.util.Optional;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doThrow;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Unit tests for the RecyclingTipsController class.
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = WasteManagementApplication.class)
 @AutoConfigureMockMvc
@@ -39,6 +40,9 @@ public class RecyclingTipControllerTests {
     @MockBean
     private RecyclingTipsController recyclingTipsController;
 
+    /**
+     * Tests retrieving all recycling tips.
+     */
     @Test
     public void testGetAllRecyclingTips() throws Exception {
         RecyclingTip recyclingTip = getRecyclingTip();
@@ -53,6 +57,9 @@ public class RecyclingTipControllerTests {
                 .andExpect(jsonPath("$[0].tip", is(recyclingTip.getTip())));
     }
 
+    /**
+     * Tests retrieving a recycling tip by ID.
+     */
     @Test
     public void testGetRecyclingTipById() throws Exception {
         RecyclingTip recyclingTip = getRecyclingTip();
@@ -63,6 +70,9 @@ public class RecyclingTipControllerTests {
                 .andExpect(jsonPath("tip", is(recyclingTip.getTip())));
     }
 
+    /**
+     * Tests updating a recycling tip by ID.
+     */
     @Test
     public void testUpdateRecyclingTipById() throws Exception {
         RecyclingTip recyclingTip = getRecyclingTip();
@@ -74,6 +84,9 @@ public class RecyclingTipControllerTests {
                 .andExpect(status().isOk());
     }
 
+    /**
+     * Tests retrieving all recycling tips when empty.
+     */
     @Test
     public void testGetAllRecyclingTipsEmpty() throws Exception {
         List<RecyclingTip> recyclingTips = new ArrayList<>();
@@ -84,6 +97,9 @@ public class RecyclingTipControllerTests {
                 .andExpect(status().isNoContent());
     }
 
+    /**
+     * Tests retrieving a recycling tip by ID when not found.
+     */
     @Test
     public void testGetRecyclingTipByIdNotFound() throws Exception {
         given(recyclingTipsController.getRecyclingTipById(1L)).willReturn(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
@@ -92,6 +108,9 @@ public class RecyclingTipControllerTests {
                 .andExpect(status().isNotFound());
     }
 
+    /**
+     * Utility method to create a sample RecyclingTip object for testing purposes.
+     */
     private RecyclingTip getRecyclingTip() {
         RecyclingTip recyclingTip = new RecyclingTip();
         recyclingTip.setId(1L);
@@ -100,6 +119,9 @@ public class RecyclingTipControllerTests {
         return recyclingTip;
     }
 
+    /**
+     * Utility method to convert an object to JSON string.
+     */
     private static String asJson(final Object obj) {
         try {
             return new ObjectMapper().writeValueAsString(obj);

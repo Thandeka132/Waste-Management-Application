@@ -16,10 +16,12 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 
+/**
+ * Unit tests for the RecyclingTipsService class.
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = WasteManagementApplication.class)
 public class RecyclingTipsServiceTests {
@@ -30,6 +32,9 @@ public class RecyclingTipsServiceTests {
     @MockBean
     private RecyclingTipsRepository recyclingTipsRepository;
 
+    /**
+     * Tests retrieving all recycling tips.
+     */
     @Test
     public void testGetAllRecyclingTip() throws Exception {
         RecyclingTip recyclingTip = getRecyclingTip();
@@ -40,6 +45,9 @@ public class RecyclingTipsServiceTests {
         assertEquals(result.size(), 1);
     }
 
+    /**
+     * Tests retrieving a recycling tip by ID.
+     */
     @Test
     public void testGetRecyclingTipByID() throws Exception {
         RecyclingTip recyclingTip = getRecyclingTip();
@@ -49,6 +57,9 @@ public class RecyclingTipsServiceTests {
         assertEquals(result.get().getId(), 1L);
     }
 
+    /**
+     * Tests retrieving a recycling tip by ID when not found.
+     */
     @Test
     public void testGetRecyclingTipByID_NotFound() throws Exception {
         given(recyclingTipsService.getRecyclingTipsById(2L)).willReturn(Optional.empty());
@@ -56,6 +67,9 @@ public class RecyclingTipsServiceTests {
         assertFalse(result.isPresent());
     }
 
+    /**
+     * Tests saving a recycling tip.
+     */
     @Test
     public void testSaveRecyclingTip() throws Exception {
         RecyclingTip recyclingTip = getRecyclingTip();
@@ -67,6 +81,9 @@ public class RecyclingTipsServiceTests {
 
     }
 
+    /**
+     * Tests saving a recycling tip with invalid data.
+     */
     @Test
     public void testSaveRecyclingTip_InvalidData() throws Exception {
         RecyclingTip invalidRecyclingTip = new RecyclingTip();
@@ -79,7 +96,9 @@ public class RecyclingTipsServiceTests {
         assertNull(result);
     }
 
-
+    /**
+     * Tests updating a recycling tip.
+     */
     @Test
     public void testUpdateRecyclingTip() throws Exception {
         RecyclingTip oldRecyclingTip = getRecyclingTip();
@@ -95,6 +114,9 @@ public class RecyclingTipsServiceTests {
         assertEquals(result.getBenefit(), "Reduces contamination and improves recycling quality");
     }
 
+    /**
+     * Tests updating a recycling tip that is not found.
+     */
     @Test
     public void testUpdateRecyclingTip_NotFound() throws Exception {
         RecyclingTip updatedRecyclingTip = getUpdateRecyclingTip();
@@ -105,6 +127,9 @@ public class RecyclingTipsServiceTests {
         assertNull(result);
     }
 
+    /**
+     * Tests deleting a recycling tip.
+     */
     @Test
     public void testDeleteRecyclingTip() throws Exception {
         RecyclingTip recyclingTip = getRecyclingTip();
@@ -113,6 +138,9 @@ public class RecyclingTipsServiceTests {
         assertTrue(true);
     }
 
+    /**
+     * Tests deleting a recycling tip that is not found.
+     */
     @Test
     public void testDeleteRecyclingTip_NotFound() throws Exception {
         doNothing().when(recyclingTipsService).deleteRecyclingTip(2L);
@@ -121,6 +149,9 @@ public class RecyclingTipsServiceTests {
         assertTrue(true);
     }
 
+    /**
+     * Utility method to create a sample RecyclingTip object for testing purposes.
+     */
     private RecyclingTip getRecyclingTip() {
         RecyclingTip recyclingTip = new RecyclingTip();
         recyclingTip.setId(1L);
@@ -129,6 +160,9 @@ public class RecyclingTipsServiceTests {
         return recyclingTip;
     }
 
+    /**
+     * Utility method to create an updated RecyclingTip object for testing purposes.
+     */
     private RecyclingTip getUpdateRecyclingTip() {
         RecyclingTip recyclingTip = new RecyclingTip();
         recyclingTip.setId(1L);

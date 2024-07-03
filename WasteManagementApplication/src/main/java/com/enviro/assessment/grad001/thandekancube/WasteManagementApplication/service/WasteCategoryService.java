@@ -8,25 +8,29 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service // Marks the class as a Spring service component
 public class WasteCategoryService {
 
-    @Autowired
+    @Autowired // Injects the WasteCategoryRepository dependency
     @SuppressWarnings("unused")
     private WasteCategoryRepository wasteCategoryRepository;
 
+    // Retrieves all waste categories from the repository
     public List<WasteCategory> getAllWasteCategories() {
         return wasteCategoryRepository.findAll();
     }
 
-    public Optional<WasteCategory>  getWasteCategoryById(Long id) {
+    // Retrieves a specific waste category by ID
+    public Optional<WasteCategory> getWasteCategoryById(Long id) {
         return wasteCategoryRepository.findById(id);
     }
 
+    // Saves a new waste category to the repository
     public WasteCategory saveWasteCategory(WasteCategory wasteCategory) {
         return wasteCategoryRepository.save(wasteCategory);
     }
 
+    // Updates an existing waste category by ID
     public WasteCategory updateCategory(Long id, WasteCategory newCategoryData) {
         Optional<WasteCategory> oldCategory = wasteCategoryRepository.findById(id);
 
@@ -41,8 +45,8 @@ public class WasteCategoryService {
         }
     }
 
+    // Deletes a waste category by ID
     public void deleteWasteCategory(Long id) {
         wasteCategoryRepository.deleteById(id);
     }
-
 }

@@ -8,25 +8,29 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service // Marks the class as a Spring service component
 public class RecyclingTipsService {
 
-    @Autowired
+    @Autowired // Injects the RecyclingTipsRepository dependency
     @SuppressWarnings("unused")
     private RecyclingTipsRepository recyclingTipsRepository;
 
+    // Retrieves all recycling tips from the repository
     public List<RecyclingTip> getAllRecyclingTips() {
         return recyclingTipsRepository.findAll();
     }
 
+    // Retrieves a specific recycling tip by ID
     public Optional<RecyclingTip> getRecyclingTipsById(Long id) {
         return recyclingTipsRepository.findById(id);
     }
 
+    // Saves a new recycling tip to the repository
     public RecyclingTip saveRecyclingTip(RecyclingTip recyclingTip) {
         return recyclingTipsRepository.save(recyclingTip);
     }
 
+    // Updates an existing recycling tip by ID
     public RecyclingTip updateRecyclingTip(Long id, RecyclingTip newRecyclingTip) {
         Optional<RecyclingTip> oldRecyclingTip = recyclingTipsRepository.findById(id);
 
@@ -41,6 +45,7 @@ public class RecyclingTipsService {
         }
     }
 
+    // Deletes a recycling tip by ID
     public void deleteRecyclingTip(Long id) {
         recyclingTipsRepository.deleteById(id);
     }

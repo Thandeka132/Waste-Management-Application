@@ -4,20 +4,21 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-@Entity
-@Table(name = "tips")
+@Entity // Marks the class as a JPA entity
+@Table(name = "tips") // Maps the class to the "tips" table in the database
 public class RecyclingTip {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id // Specifies the primary key
+    @GeneratedValue(strategy = GenerationType.AUTO) // Specifies how the primary key should be generated
     private long Id;
 
-    @Column(name = "tip")
-    @NotNull(message = "Tip cannot be null")
-    @Size(min = 1, max = 100, message = "Tip must be between 1 and 100 characters")
+    @Column(name = "tip") // Maps the field to the "tip" column in the database
+    @NotNull(message = "Tip cannot be null") // Adds validation constraint for not null
+    @Size(min = 1, max = 100, message = "Tip must be between 1 and 100 characters") // Adds validation constraint for size
     private String tip;
 
     @Column(name = "benefit")
+    @Size(min = 1, max = 100, message = "Benefit must be between 1 and 100 characters")
     private String benefit;
 
     public long getId() {
