@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.enviro.assessment.grad001.thandekancube.WasteManagementApplication.DisposalGuidelineTests.DisposalGuidelineControllerTests
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 22.54 s -- in com.enviro.assessment.grad001.thandekancube.WasteManagementApplication.DisposalGuidelineTests.DisposalGuidelineControllerTests

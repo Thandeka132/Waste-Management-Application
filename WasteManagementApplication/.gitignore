@@ -1,1 +1,7 @@
-/WasteManagementApplication/target/
+.idea
+
+*.class
+
+WasteManagementApplication/mvnw
+WasteManagementApplication/target/
+WasteManagementApplication/mvnw.cmd
