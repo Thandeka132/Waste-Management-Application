@@ -53,7 +53,7 @@ To run the application locally, follow these steps:
 - **DELETE /api/category/{id}**: Delete a recycling category by ID
 
 ## Testing
-The application includes unit tests and integration tests for the controller and service layers. To run the tests, use:
+The application includes unit tests for the controller and service layers. To run the tests, use:
    ```bash
    mvn test
    ```
